@@ -1,6 +1,6 @@
 # 1921. Eliminate Maximum Number of Monsters https://leetcode.com/problems/eliminate-maximum-number-of-monsters/
-# Runtime: 837 ms
-# Memory Usage: 36.6 MB
+# Runtime: 672 ms
+# Memory Usage: 24.96 MB
 class Solution(object):
     def eliminateMaximum(self, dist, speed):
         """
@@ -8,17 +8,16 @@ class Solution(object):
         :type speed: List[int]
         :rtype: int
         """
-        arrival = []
         for i in range(len(dist)):
-            arrival.append([dist[i]/float(speed[i]), i])
-        arrival.sort()
-        
-        t = 0
-        cnt = 0
+            dist[i] = int(ceil(dist[i]/float(speed[i])))
+            speed[i] = 0
 
-        while cnt<len(dist):
-            posi = dist[arrival[cnt][1]] - (speed[arrival[cnt][1]]*t)
-            if posi>0: cnt += 1
-            else: break
-            t+= 1
-        return cnt
+        for i in range(len(dist)):
+            if dist[i] < len(dist): 
+                speed[dist[i]] += 1
+        
+        sum = 0
+        for i in range(len(speed)):
+            sum += speed[i]
+            if sum >= i+1: return i
+        return len(speed)
