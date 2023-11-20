@@ -1,4 +1,4 @@
-# 36. Valid Sudoku
+# 36. Valid Sudoku https://leetcode.com/problems/valid-sudoku/
 # Runtime: 50 ms
 # Memory: 13.29 MB
 class Solution(object):
